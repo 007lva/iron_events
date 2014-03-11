@@ -1,0 +1,12 @@
+<h1>Events#new</h1>
+
+<% form_for @event do |e| %>
+  <%= e.label :name %>
+  <%= e.text_field :name %>
+  <%= e.label :address %>
+  <%= e.text_field :address %>
+  <%= e.label :start_at %>
+  <%= e.datetime_field :start_at %>
+  <%= e.label :end_at %>
+  <%= e.datetime_field :end_at %>
+<% end %>
