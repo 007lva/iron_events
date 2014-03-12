@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
+
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
   def index
-    @events = Event.all
+    @events = Event.for_today
   end
 
   def new
@@ -8,6 +11,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def edit
@@ -16,8 +20,11 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create event_params
-    @event.save
-    redirect_to events_path
+    if @event.save
+      redirect_to events_path
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -30,7 +37,6 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    puts "DESTROYYYY"
     redirect_to events_path
   end
 
@@ -39,4 +45,5 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :address, :start_at, :end_at)
   end
+
 end

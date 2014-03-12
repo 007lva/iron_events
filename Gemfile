@@ -27,6 +27,8 @@ gem 'pure-css-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+gem 'devise'
+gem 'bcrypt'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -35,6 +37,9 @@ end
 
 group :development, :test do
  gem 'rspec-rails'
+ gem 'factory_girl_rails'
+ gem 'capybara'
+ gem 'selenium-webdriver'
 end
 
 # Use ActiveModel has_secure_password
