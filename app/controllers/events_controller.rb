@@ -4,10 +4,16 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.for_today
+
+    respond_to do |format|
+      format.html
+      format.json# { render json: @events }
+    end
   end
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def show
@@ -16,12 +22,15 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    authorize @event
   end
 
   def create
     @event = Event.create event_params
+    @event.user = current_user
+    authorize @event
     if @event.save
-      redirect_to events_path
+      redirect_to @event
     else
       render 'new'
     end

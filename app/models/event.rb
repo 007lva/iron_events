@@ -1,7 +1,11 @@
 class Event < ActiveRecord::Base
+
+  belongs_to :user
+
   validates :name, presence: true, length: { maximum: 60 }
-  #validates :description, length: { minimum: 100 }, allow_blank: true
-  #validate :start_at_is_present, :end_at_is_present, :start_at_is_before_end_at
+  validates :description, length: { minimum: 100 }, allow_blank: true
+  validate :start_at_is_present, :end_at_is_present, :start_at_is_before_end_at
+  validates :user, presence: true
 
   private
 

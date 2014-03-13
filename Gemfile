@@ -29,6 +29,7 @@ gem 'pure-css-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'bcrypt'
+gem 'pundit'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

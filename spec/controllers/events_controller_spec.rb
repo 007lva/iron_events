@@ -5,7 +5,7 @@ describe EventsController do
   describe '#index' do
 
     it 'displays events for today' do
-      event = FactoryGirl.create(:event)
+      event = FactoryGirl.create(:event, start_at: Date.today)
 
       expect(Event).to receive(:for_today).and_call_original
       get :index
@@ -18,7 +18,12 @@ describe EventsController do
 
   describe '#new' do
 
-    it '#new create a new empty event' do
+     before do
+       @user = FactoryGirl.create(:user)
+       sign_in @user
+    end
+
+    it 'create a new empty event' do
     
       get :new
       expect(assigns(:event)).to be_a_new(Event)
@@ -28,6 +33,11 @@ describe EventsController do
   end
 
   describe '#create' do
+
+    before do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+    end
 
     it 'when create event increase the number of events' do
       #attrs = { 'name' => 'hackshow', 'start_at' => Date.new(2014,2,2), 'end_at' => Date.new(2014,2,3) }
