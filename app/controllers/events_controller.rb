@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @events = Event.for_today
+    @events = Event.all
 
     respond_to do |format|
       format.html
@@ -15,6 +15,11 @@ class EventsController < ApplicationController
     @event = Event.new
     authorize @event
   end
+
+  def search
+    event_names = Event.names_beginning_with(params[:term])
+    render :json => event_names
+  end 
 
   def show
     @event = Event.find(params[:id])

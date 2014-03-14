@@ -6,6 +6,10 @@ class Event < ActiveRecord::Base
   validates :description, length: { minimum: 100 }, allow_blank: true
   validate :start_at_is_present, :end_at_is_present, :start_at_is_before_end_at
   validates :user, presence: true
+  
+  def self.names_beginning_with(some_text)
+    where("name like ?", "#{some_text}%").pluck(:name)
+  end
 
   private
 

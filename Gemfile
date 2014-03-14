@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.1'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -30,6 +31,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'bcrypt'
 gem 'pundit'
+gem 'jquery-ui-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -42,6 +44,8 @@ group :development, :test do
  gem 'capybara'
  gem 'selenium-webdriver'
 end
+
+gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
